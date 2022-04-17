@@ -13,8 +13,8 @@ const Start = () => {
       {/* @ts-ignore */}
       <List header='可点击的功能列表'>
         <List.Item onClick={goToAvatar}>随机头像</List.Item>
-        <List.Item onClick={() => {}}>随机图片</List.Item>
-        <List.Item onClick={() => {}}>随机一句话</List.Item>
+        <List.Item onClick={() => {}}>随机一件事</List.Item>
+        <List.Item onClick={() => {}}>随机网易云</List.Item>
       </List>
     </div>
   );

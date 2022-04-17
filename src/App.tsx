@@ -4,7 +4,6 @@ import Home from './containers/Home';
 import Loading from './components/Loading';
 import { ErrorBlock } from 'antd-mobile';
 
-const Picture = lazy(() => import('./containers/Picture'));
 const Start = lazy(() => import('./containers/Start'));
 const Avatar = lazy(() => import('./containers/Avatar'));
 
@@ -13,14 +12,6 @@ const App = () => {
     <Routes>
       <Route index element={<Home />} />
       <Route path='home' element={<Home />} />
-      <Route
-        path='picture'
-        element={
-          <Suspense fallback={<Loading />}>
-            <Picture />
-          </Suspense>
-        }
-      />
       <Route
         path='start'
         element={
