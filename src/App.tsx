@@ -5,6 +5,7 @@ import Home from './containers/Home';
 const Picture = lazy(() => import('./containers/Picture'));
 const Start = lazy(() => import('./containers/Start'));
 const Article = lazy(() => import('./containers/Article'));
+const Avatar = lazy(() => import('./containers/Avatar'));
 
 const App = () => {
   return (
@@ -32,6 +33,14 @@ const App = () => {
         element={
           <Suspense fallback={<>Loading...</>}>
             <Start />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path='avatar'
+        element={
+          <Suspense fallback={<>Loading...</>}>
+            <Avatar />
           </Suspense>
         }
       ></Route>

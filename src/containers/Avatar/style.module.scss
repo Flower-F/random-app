@@ -1,0 +1,32 @@
+.avatar {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+
+  .image {
+    --size: 80vw;
+    margin: 0 auto;
+  }
+
+  .select {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    display: flex;
+  }
+
+  .loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000;
+    opacity: 0.4;
+    z-index: 5000;
+    pointer-events: visible;
+  }
+}
