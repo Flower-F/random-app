@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Switch, Avatar, Card, SpinLoading } from 'antd-mobile';
-import styles from './style.module.scss';
 import { axiosInstance } from '../../request';
+import styles from './style.module.scss';
 
 const AvatarPage = () => {
   const [loading, setLoading] = useState(false);
