@@ -1,19 +1,58 @@
-import axios from 'axios';
+import { Skeleton } from 'antd-mobile';
 import { useEffect, useState } from 'react';
+import { axiosInstance } from '../../request';
+import styles from './style.module.scss';
+
+interface Article {
+  title: string;
+  subtitle: string;
+  content: string;
+}
 
 const Article = () => {
-  const [article, setArticle] = useState('');
+  const [article, setArticle] = useState<Article | null>(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    axios
+    setLoading(true);
+    axiosInstance
       .get('https://qcfb6a.api.cloudendpoint.cn/getArticle')
       .then((res) => {
         console.log(res);
-        const data = res.data;
+        if (res.status === 200) {
+          const data = res.data;
+          setArticle({
+            title: data.title,
+            content: data.content,
+            subtitle: data.subtitle,
+          });
+        }
       })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
-  return <div>{article}</div>;
+  if (loading) {
+    return (
+      <div className={styles.loading}>
+        <Skeleton.Title animated />
+        <Skeleton.Paragraph lineCount={12} animated />
+      </div>
+    );
+  }
+
+  return (
+    <div className={styles.article}>
+      <div className={styles.title}>{article?.title}</div>
+      <div className={styles.subtitle}>{article?.subtitle}</div>
+      <div
+        className={styles.content}
+        dangerouslySetInnerHTML={{ __html: article?.content || '' }}
+      ></div>
+    </div>
+  );
 };
+
 export default Article;

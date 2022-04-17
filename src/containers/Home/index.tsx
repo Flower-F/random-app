@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Button, SpinLoading } from 'antd-mobile';
-import axios from 'axios';
-import styles from './style.module.scss';
 import { useNavigate } from 'react-router';
+import { axiosInstance } from '../../request';
+import styles from './style.module.scss';
 
 const Home = () => {
   const [content, setContent] = useState('');
@@ -12,7 +12,7 @@ const Home = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios
+    axiosInstance
       .get('https://qcfb6a.api.cloudendpoint.cn/getSweet')
       .then((res) => {
         if (res.status === 200) {
