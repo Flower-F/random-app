@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
-import { Button } from 'antd-mobile';
+import { Button, SpinLoading } from 'antd-mobile';
 import axios from 'axios';
 import styles from './style.module.scss';
+import { useNavigate } from 'react-router';
 
 const Home = () => {
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -27,6 +30,18 @@ const Home = () => {
     window.location.reload();
   };
 
+  const goToMain = () => {
+    navigate('/start');
+  };
+
+  if (loading) {
+    return (
+      <div className={styles.loading}>
+        <SpinLoading color='default' />
+      </div>
+    );
+  }
+
   return (
     <div className={styles.home}>
       <span className={styles.content}>{content}</span>
@@ -34,9 +49,13 @@ const Home = () => {
         className={styles.image}
         src='https://api.oick.cn/random/api.php?type=pe'
       />
-      <Button className={styles.button} onClick={reload}>
-        换一个
-      </Button>
+
+      <div className={styles.button}>
+        <Button onClick={reload}>再换一个</Button>
+        <Button onClick={goToMain} style={{ marginLeft: 6 }}>
+          开启挑战
+        </Button>
+      </div>
     </div>
   );
 };

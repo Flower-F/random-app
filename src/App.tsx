@@ -3,6 +3,8 @@ import { Suspense, lazy } from 'react';
 import Home from './containers/Home';
 
 const Picture = lazy(() => import('./containers/Picture'));
+const Start = lazy(() => import('./containers/Start'));
+const Article = lazy(() => import('./containers/Article'));
 
 const App = () => {
   return (
@@ -14,6 +16,22 @@ const App = () => {
         element={
           <Suspense fallback={<>Loading...</>}>
             <Picture />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path='article'
+        element={
+          <Suspense fallback={<>Loading...</>}>
+            <Article />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path='start'
+        element={
+          <Suspense fallback={<>Loading...</>}>
+            <Start />
           </Suspense>
         }
       ></Route>

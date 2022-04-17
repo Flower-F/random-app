@@ -1,3 +1,10 @@
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
 .home {
   position: relative;
   display: flex;
@@ -14,6 +21,9 @@
     z-index: 2000;
     color: white;
     line-height: 1.5;
+    box-shadow: 5px 5px 15px #bebebe, -5px -5px 15px #ffffff;
+    padding: 8px;
+    border-radius: 4px;
   }
 
   .image {
