@@ -51,8 +51,8 @@ const Home = () => {
       />
 
       <div className={styles.button}>
-        <Button onClick={reload}>再换一个</Button>
-        <Button onClick={goToMain} style={{ marginLeft: 6 }}>
+        <Button onClick={reload}>再换一张</Button>
+        <Button onClick={goToMain} style={{ marginLeft: 10 }}>
           随机开始
         </Button>
       </div>

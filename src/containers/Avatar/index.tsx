@@ -41,7 +41,11 @@ const AvatarPage = () => {
             defaultChecked
             onChange={setChecked}
           />
-          <Button color='primary' style={{ marginLeft: 8 }} onClick={getAvatar}>
+          <Button
+            color='primary'
+            style={{ marginLeft: 12 }}
+            onClick={getAvatar}
+          >
             获取新头像
           </Button>
         </div>

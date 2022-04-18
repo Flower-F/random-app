@@ -64,13 +64,13 @@ const Start = () => {
   };
 
   return (
-    <>
+    <div className={styles.start}>
       <h3 className={styles.title}>随机挑战</h3>
       {/* @ts-ignore */}
       <div className={styles.card}>
         <CardItem title='随机头像' color='#667eea' onClick={goToAvatar} />
         <CardItem title='随机一句话' color='#3f5efb' onClick={getThing} />
-        <CardItem title='随机一件事' color='#764ba2' onClick={getSentence} />
+        <CardItem title='随机一件事' color='#8334d2' onClick={getSentence} />
 
         <Modal
           visible={thingVisible}
@@ -121,7 +121,7 @@ const Start = () => {
           <SpinLoading color='default' style={{ '--size': '48px' }} />
         </div>
       )}
-    </>
+    </div>
   );
 };
 
