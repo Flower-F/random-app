@@ -53,7 +53,7 @@ const Home = () => {
       <div className={styles.button}>
         <Button onClick={reload}>再换一个</Button>
         <Button onClick={goToMain} style={{ marginLeft: 6 }}>
-          开启挑战
+          随机开始
         </Button>
       </div>
     </div>

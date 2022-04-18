@@ -32,7 +32,7 @@ const AvatarPage = () => {
   return (
     <div className={styles.avatar}>
       {/* @ts-ignore */}
-      <Card title='随机头像'>
+      <Card title={<h3 className={styles.title}>随机头像</h3>}>
         <Avatar src={url} className={styles.image} />
         <div className={styles.select}>
           <Switch

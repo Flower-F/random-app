@@ -1,6 +1,7 @@
-import { List, Modal, SpinLoading } from 'antd-mobile';
+import { List, Modal, Result, SpinLoading } from 'antd-mobile';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import CardItem from '../../components/CardItem';
 import { axiosInstance } from '../../request';
 import styles from './style.module.scss';
 
@@ -11,17 +12,19 @@ interface IActivity {
 }
 
 const Start = () => {
-  const [visible, setVisible] = useState(false);
+  const [thingVisible, setThingVisible] = useState(false);
+  const [sentenceVisible, setSentenceVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [activity, setActivity] = useState<IActivity>();
+  const [sentence, setSentence] = useState('');
   const navigate = useNavigate();
 
   const goToAvatar = () => {
     navigate('/avatar');
   };
 
-  const getTranslation = () => {
-    setVisible(false);
+  const getThing = () => {
+    setThingVisible(false);
     setLoading(true);
     axiosInstance
       .get('https://qcfb6a.api.cloudendpoint.cn/getActivity')
@@ -37,41 +40,81 @@ const Start = () => {
       })
       .catch(() => {})
       .finally(() => {
-        setVisible(true);
+        setThingVisible(true);
+        setLoading(false);
+      });
+  };
+
+  const getSentence = () => {
+    setSentenceVisible(false);
+    setLoading(true);
+    axiosInstance
+      .get('https://qcfb6a.api.cloudendpoint.cn/getSentence')
+      .then((res) => {
+        if (res.status === 200) {
+          const data = res.data;
+          setSentence(data.sentence);
+        }
+      })
+      .catch(() => {})
+      .finally(() => {
+        setSentenceVisible(true);
         setLoading(false);
       });
   };
 
   return (
     <>
-      <h1 className={styles.title}>随机挑战</h1>
+      <h3 className={styles.title}>随机挑战</h3>
       {/* @ts-ignore */}
-      <List>
-        <List.Item onClick={goToAvatar}>随机头像</List.Item>
-        <List.Item onClick={getTranslation}>随机一件事</List.Item>
-        <List.Item onClick={() => {}}>随机一句话</List.Item>
+      <div className={styles.card}>
+        <CardItem title='随机头像' color='#667eea' onClick={goToAvatar} />
+        <CardItem title='随机一句话' color='#3f5efb' onClick={getThing} />
+        <CardItem title='随机一件事' color='#764ba2' onClick={getSentence} />
 
         <Modal
-          visible={visible}
+          visible={thingVisible}
           content={
             <div>
-              <h3>{activity?.info}</h3>
-              <h4>{activity?.fanyi}</h4>
-              <p>PS: 机器翻译，不一定准确</p>
+              <Result
+                status='info'
+                title={
+                  <>
+                    <p style={{ fontWeight: 600 }}>{activity?.info}</p>
+                    <p>{activity?.fanyi}</p>
+                  </>
+                }
+                description='机器翻译，不一定准确哦'
+              />
             </div>
           }
           closeOnAction
           onClose={() => {
-            setVisible(false);
+            setThingVisible(false);
           }}
           actions={[
             {
               key: 'confirm',
-              text: '收到',
+              text: '好的',
             },
           ]}
         />
-      </List>
+
+        <Modal
+          visible={sentenceVisible}
+          content={<Result status='info' title={sentence} />}
+          closeOnAction
+          onClose={() => {
+            setSentenceVisible(false);
+          }}
+          actions={[
+            {
+              key: 'confirm',
+              text: '好的',
+            },
+          ]}
+        />
+      </div>
 
       {loading && (
         <div className={styles.loading}>
