@@ -69,8 +69,8 @@ const Start = () => {
       {/* @ts-ignore */}
       <div className={styles.card}>
         <CardItem title='随机头像' color='#667eea' onClick={goToAvatar} />
-        <CardItem title='随机一句话' color='#3f5efb' onClick={getThing} />
-        <CardItem title='随机一件事' color='#8334d2' onClick={getSentence} />
+        <CardItem title='随机一件事' color='#3f5efb' onClick={getThing} />
+        <CardItem title='随机一句话' color='#8334d2' onClick={getSentence} />
 
         <Modal
           visible={thingVisible}
@@ -80,11 +80,13 @@ const Start = () => {
                 status='info'
                 title={
                   <>
-                    <p style={{ fontWeight: 600 }}>{activity?.info}</p>
-                    <p>{activity?.fanyi}</p>
+                    <p style={{ fontWeight: 600, fontSize: '1.2rem' }}>
+                      {activity?.info}
+                    </p>
+                    <p style={{ fontSize: '1rem' }}>{activity?.fanyi}</p>
                   </>
                 }
-                description='机器翻译，不一定准确哦'
+                description='机器翻译，准确度较低，请谅解'
               />
             </div>
           }
